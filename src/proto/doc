@@ -1,0 +1,3 @@
+npm install -g protobufjs -g 代表全局安装，需要使用pbjs工具。
+pbjs -t static-module -w commonjs -o proto.js *.proto
+
