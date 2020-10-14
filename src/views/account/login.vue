@@ -34,7 +34,9 @@
         }
       };
     },
-    created() {
+    mounted() {
+      this.myUtils.removeStore("personId");
+      this.myUtils.removeCookie("token");
     },
     methods: {
       handleSubmit() {
