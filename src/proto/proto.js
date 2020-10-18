@@ -381,7 +381,7 @@ $root.protocol = (function() {
          * @property {number|null} [messageType] Message messageType
          * @property {number|null} [messageCategory] Message messageCategory
          * @property {number|null} [chatType] Message chatType
-         * @property {number|null} [terminalType] Message terminalType
+         * @property {string|null} [terminalType] Message terminalType
          * @property {string|null} [protocol] Message protocol
          * @property {string|null} [token] Message token
          * @property {string|null} [data] Message data
@@ -477,11 +477,11 @@ $root.protocol = (function() {
 
         /**
          * Message terminalType.
-         * @member {number} terminalType
+         * @member {string} terminalType
          * @memberof protocol.Message
          * @instance
          */
-        Message.prototype.terminalType = 0;
+        Message.prototype.terminalType = "";
 
         /**
          * Message protocol.
@@ -558,7 +558,7 @@ $root.protocol = (function() {
             if (message.chatType != null && Object.hasOwnProperty.call(message, "chatType"))
                 writer.uint32(/* id 9, wireType 0 =*/72).int32(message.chatType);
             if (message.terminalType != null && Object.hasOwnProperty.call(message, "terminalType"))
-                writer.uint32(/* id 10, wireType 0 =*/80).int32(message.terminalType);
+                writer.uint32(/* id 10, wireType 2 =*/82).string(message.terminalType);
             if (message.protocol != null && Object.hasOwnProperty.call(message, "protocol"))
                 writer.uint32(/* id 11, wireType 2 =*/90).string(message.protocol);
             if (message.token != null && Object.hasOwnProperty.call(message, "token"))
@@ -629,7 +629,7 @@ $root.protocol = (function() {
                     message.chatType = reader.int32();
                     break;
                 case 10:
-                    message.terminalType = reader.int32();
+                    message.terminalType = reader.string();
                     break;
                 case 11:
                     message.protocol = reader.string();
@@ -706,8 +706,8 @@ $root.protocol = (function() {
                 if (!$util.isInteger(message.chatType))
                     return "chatType: integer expected";
             if (message.terminalType != null && message.hasOwnProperty("terminalType"))
-                if (!$util.isInteger(message.terminalType))
-                    return "terminalType: integer expected";
+                if (!$util.isString(message.terminalType))
+                    return "terminalType: string expected";
             if (message.protocol != null && message.hasOwnProperty("protocol"))
                 if (!$util.isString(message.protocol))
                     return "protocol: string expected";
@@ -763,7 +763,7 @@ $root.protocol = (function() {
             if (object.chatType != null)
                 message.chatType = object.chatType | 0;
             if (object.terminalType != null)
-                message.terminalType = object.terminalType | 0;
+                message.terminalType = String(object.terminalType);
             if (object.protocol != null)
                 message.protocol = String(object.protocol);
             if (object.token != null)
@@ -805,7 +805,7 @@ $root.protocol = (function() {
                 object.messageType = 0;
                 object.messageCategory = 0;
                 object.chatType = 0;
-                object.terminalType = 0;
+                object.terminalType = "";
                 object.protocol = "";
                 object.token = "";
                 object.data = "";

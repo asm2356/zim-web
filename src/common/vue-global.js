@@ -57,9 +57,9 @@ let chat = {
     groupChat: 1,
     privateChat: 2
   }, terminalType: {
-    android: 1,
-    webSocket: 2,
-    ios: 3
+    android: "Android",
+    webSocket: "Web",
+    ios: "Ios"
   }, protocol: {
     tcp: "tcp",
     webSocket: "webSocket"

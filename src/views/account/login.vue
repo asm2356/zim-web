@@ -54,7 +54,8 @@
           method: "post",
           params: {
             username: _this.form.username,
-            pwd: _this.form.password
+            pwd: _this.form.password,
+            terminalType:_this.chat.terminalType.webSocket
           }
         }).then((response) => {
           let data = response.data;
